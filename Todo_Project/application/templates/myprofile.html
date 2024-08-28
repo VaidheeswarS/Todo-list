@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My profile</title>
+        {% load static %}
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head> 
+    <style>
+        *{
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            /* background-color: whitesmoke; */
+        }
+        ul{
+            background-color:rgb(17, 120, 204);
+            height: 60px;
+        }
+        ul li{
+            display: inline-block;
+            margin-top: 15px;
+        }
+        #dr-heading #dr-contents{
+            display: none; 
+        }
+        #dr-heading .btn-dr:active #dr-contents{
+            display: block;
+        }
+        .btn-dr{
+            margin-top: 20px;
+        }
+        h2{
+            color: White;
+        }
+        #i-1{
+            /* font-size: large; */
+            position: absolute;
+            margin-top: -70px;
+            margin-left: 1200px;
+            color: white;
+        }
+        #dr-contents{
+            position: absolute;
+            margin-top: 0px;
+            margin-left: 1100px;
+            background-color: pink;
+            border-radius: 10px;
+            padding-left: 19px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-right: 10px;
+
+
+        }
+        body{
+            background-color: aliceblue;
+        }
+        table{
+            border-collapse:collapse ;
+            margin-left: 50px;
+    
+        }
+        th{
+            padding: 10px;
+            font-size: large;
+        }
+        td{
+        padding: 7px;
+        }
+        a{
+            color: White;
+        }  
+        .up{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            height: 20px;
+            width: 65px;
+            background-color: green;
+            border-style: solid;
+            border-radius: 5px;
+            border-color: green;
+        }
+        .del{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-color: red;
+            width: 65px;
+            height: 17px;
+            border-style: solid;
+            border-color: red;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .pending{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            height: 17px;
+            width: 80px;
+            background-color: orange;
+            border-style: solid;
+            border-color: orange;
+            border-radius: 5px;
+        }
+        .completed{
+            margin-top: 5px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            height: 17px;
+            width: 80px;
+            background-color: green;
+            border-style :solid ;
+            border-color: green;
+            border-radius: 5px;
+
+
+        }
+        h3{
+            margin-left: 50px;
+        }
+        button{
+            border-style: solid;
+            border-radius: 5px;
+            padding: 5px;
+            border-color: Blue;
+            background-color: blue;
+            color: white;
+
+        }
+        .btn-1{
+            margin-left: 100px;
+            margin-top: 60px;   
+
+        }
+        .btn-2{
+            margin-left: 200px;
+            margin-top: -50px;
+            margin-bottom: 10px;
+            /* padding-left: 120px; */
+        }
+        .lout{
+            position: absolute;
+            left: 1100px;
+            top: 10px;
+            font-size: 35px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+
+    <body>
+            <ul>
+                <li><h2>My profile</h2></li>                
+            </ul>
+            <a href="/logout/" class="lout"><i class='bx bx-log-out'></i></a>
+            <div id="dr-heading">
+
+                <div class="btn-dr">
+                    <i class='bx bxs-user-pin' style="font-size: 40px;" id="i-1"></i>
+                    <div id="dr-contents">
+                        <span>Name: </span>
+                        <span>{{row.Username}}</span><br>
+                        <span>Age: </span>
+                        <span>{{row.Age}}</span><br>
+                        <span>Email: </span>
+                        <span>{{row.Email}}</span><br>
+                        <span>Phone Number: </span>
+                        <span>{{row.Phonenumber}}</span><br>
+                        <span>Password: </span>
+                        <span>{{row.Password}}</span><br>
+                    </div>
+                </div>
+                
+            </div>
+        
+        <form action="">
+            <h3>S_No: {{ltable.S_No}}  Email: {{row.Email}}</h3>
+            <table border="1px" >
+                <tr>
+                    <th>S.No</th>
+                    <th>Email</th>
+                    <th>Work</th>
+                    <th>Work-Created</th>
+                    <th>Work-Updated</th>
+                    <th colspan="2">Status</th>
+                    <th>Current Status</th>
+                    <th>Submit-Time</th>
+                    <th colspan="2">update/Delete</th>
+                </tr>
+                {% for fl in fldata%}
+                <tr>
+                    <td>{{fl.No}}</td>
+                    <td>{{fl.email}}</td>
+                    <td>{{fl.work}}</td>
+                    <td>{{fl.Created_on}}</td>
+                    <td>{{fl.updated_on}}</td>
+                    <td colspan="2">
+                        <div class="pending"><a href="{% url 'decision' fl.email fl.No %}">Pending</a></div>
+                        <div class="completed"><a  href="{% url 'decision' fl.email fl.No %}">Completed</a></div>
+                    </td>
+                    <td>{{fl.status}}</td>
+                    <td>{{fl.Submit_time}}</td>
+                    <td colspan="2">
+                        <div class="up" > <a href="{% url 'update' fl.No %}">Edit</a></div>
+                        <div class="del"> <a href="{% url 'delete' fl.No %}">Delete</a></div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+        
+        <form action="{% url 'wrk' ltable.email_id %}">
+            <button class="btn-1">Add work <i class='bx bx-plus'></i></button>
+        </form>
+        <form action="/login/">
+            <button class="btn-2">back</button>
+        </form>
+    </body>
+</html>

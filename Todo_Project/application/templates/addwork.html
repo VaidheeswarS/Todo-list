@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add my remainder</title>
+    </head>
+    <style>
+        /* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
+}
+
+/* Basic body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2; /* Light gray background */
+    padding: 20px;
+}
+
+/* Form container styles */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for box effect */
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+/* Table cell styles */
+td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+/* Label styles */
+label {
+    font-weight: bold;
+    color: #333; /* Dark gray text */
+}
+
+/* Input styles */
+input[type="text"], input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+/* Radio button styles */
+input[type="radio"] {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Button styles */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text */
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+    
+    </style>
+    <body>
+        <form action="{% url 'wrk' rdata.email_id %}" method="POST">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td><label for="">Work</label></td>
+                    <td><input type="text" name="remainder" placeholder="Type your remainder here.."></td>
+                </tr>
+                <tr>
+                    <td><label for="">Date of Submission:</label></td>
+                    <td><input type="date" name="date"></td>
+                </tr>
+                <tr>
+                    <td><label for="">Work Status</label></td>
+                    <td>
+                        <input type="radio" name="status" value="Pending">Pending
+                        <input type="radio" name="status" value="Completed">Completed
+                    </td>
+                </tr>
+                <!-- <tr>
+                    <td><label for="">SNo</label></td>
+                    <td><input type="number" name="sno" placeholder="Enter the S_No in your table"></td>
+                </tr> -->
+                <tr>
+                    <td>
+                        <button>Create</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+
+    </body>
+</html>

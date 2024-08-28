@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Decision</title>
+    </head>
+    <style>
+        /* Reset default margin and padding */
+html, body, form, table, tr, td {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set basic styles for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+/* Center the form */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style table */
+table {
+    width: 100%;
+}
+
+/* Style form labels */
+label {
+    font-weight: bold;
+    display: block; /* Ensures labels appear on a new line */
+}
+
+/* Style form input fields */
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Style submit button */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    form {
+        padding: 10px;
+    }
+}
+
+    </style>
+    <body>
+        <form action="{% url 'decision' dec.email dec.No %}" method="POST">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td><label for="">Are you Sure you are Completed</label></td>
+                    <td>
+                        <input type="radio" name="Decision" value="Pending">Pending
+                        <input type="radio" name="Decision" value="Completed">Completed
+                    </td>
+                </tr>
+                <tr>
+                    <td> <button>Submit</button></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
